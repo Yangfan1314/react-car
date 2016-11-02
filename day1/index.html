@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div ng-controller="myYff">
+			<!--{{变量绑定}}-->
+			<p>{{greeting.text}},angular</p>
+			<p>{{greeting.name}},angular</p>
+		</div>
+		
+		<yff></yff> <!--自定义标签-->
+		
+		<!--双向数据绑定-->
+		<input type="text" ng-model="change"/>
+		<p>{{change}},双向数据绑定，及时更改</p>
+		
+	</body>
+	<script type="text/javascript" src="../angular.js"></script>
+	<script type="text/javascript">
+	
+		var myModule=angular.module("myApp",[]);  //定义一个模块
+		
+		myModule.controller("myYff",['$scope',   //调用模块controller方法，生成控制器
+			function myYff($scope){
+				$scope.greeting={
+					text:"hello",
+					name:"Join",
+				};
+			}
+		]);
+		
+		myModule.directive('yff',function(){   //angularjs 指令 directive 方法  实现自定义标签
+			return{
+				restrict:'E',
+				template:'<div>hello 杨凡凡</div>',
+				replace:true
+			}
+		});
+		
+		
+		
+	</script>
+</html>
